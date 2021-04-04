@@ -1,11 +1,14 @@
 const express = require('express') //Biblioteca para criar o servidor
 const server = express() //A variavel server recebe tudo do express()
 const routes = require('./routes') //Importando o routes do nosso arquivo routes.js e cria todas as rotas
-
+const path = require("path");
 
 
 // Configurando o server para renderizar as views pela template engine
 server.set('view engine', 'ejs') 
+
+//mudar a localizacao da pasta views
+server.set('views', path.join(__dirname, 'views'))
 
 //Habilitar arquivos estaticos
 server.use(express.static("public")) // Falando para o servidor usar os arquivos estaticos que estão na pasta public
