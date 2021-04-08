@@ -4,15 +4,15 @@ const jobUtils = require('../utils/jobUtils');
 
 module.exports = {
 
-  index (req, res) {
-    const jobs = Job.get();
-    const profile = Profile.get();
+  async index (req, res) {
+    const jobs = await Job.get(); // Retorna todos os dados do job
+    const profile = await Profile.get(); // Retorna todos os dados do Profile
 
     let statusCount = {
       progress: 0,
       done: 0,
       total: jobs.length
-    }
+    } // Essa variavel cria um objeto com o progresso do job e o total de jobs existentes
     
     //Total de horas por dia de cada projeto em progresso
     let jobTotalHours = 0;
