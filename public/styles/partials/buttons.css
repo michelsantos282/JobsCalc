@@ -54,6 +54,14 @@ button.button {
   color: var(--color-text);
 }
 
+.button.red.profile {
+  background: var(--color-delete);
+  color: var(--color-text);
+  display: flex;
+  width: 1rem;
+  align-items: flex-end;
+}
+
 .button.red:hover {
   background: #FA3F38;
 }

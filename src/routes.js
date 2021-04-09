@@ -14,4 +14,11 @@ routes.get('/job/:id', JobController.show)
 routes.post('/job/:id', JobController.update)
 routes.post('/job/delete/:id', JobController.delete)
 
+routes.get('/login', (req, res) => {
+    return res.render("login");
+})
+routes.get('/register', (req, res) => {
+    return res.render("register");
+})
+
 module.exports = routes; //Exportando o metodo routes
