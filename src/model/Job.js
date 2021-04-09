@@ -17,19 +17,46 @@ module.exports = {
         createdAt: job.created_at
       }
     })
-  },//parei aqui 3:32:01 no video
-
-  update(newData) {
-    data = newData;
   },
 
-  create(newJob){
-    data.push(newJob);
+  async update(updatedJob, jobId) {
+    const db = await Database()
+
+		db.run(`UPDATE jobs SET
+		  name = "${updatedJob.name}",
+      daily_hours = ${updatedJob["daily-hours"]},
+      total_hours = ${updatedJob["total-hours"]}
+      WHERE id = ${jobId}
+		`)
+
+    db.close()
   },
 
-  delete(jobId) {
-    data = data.filter(job => Number(job.id) !== Number(jobId))
-  } // Parei aqui 2:01:32 do video
+  async create(newJob){
+    const db = await Database()
 
+    await db.run(`INSERT INTO jobs (
+      name,
+      daily_hours,
+      total_hours,
+      created_At
+    ) values(
+      "${newJob.name}",
+      ${newJob.daily_hours},
+      ${newJob.total_hours},
+      ${newJob.created_at}
+
+    )`)
+
+    await db.close
+  },
+
+  async delete(jobId) {
+    const db = await Database()
+
+    db.run(`DELETE from jobs WHERE id = ${jobId}`)
+
+    db.close();
+  } 
 
 }
